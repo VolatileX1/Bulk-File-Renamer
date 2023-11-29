@@ -24,6 +24,9 @@ Bulk File Renamer is a handy Python script that allows you to rename multiple fi
 - **Case Insensitivity**: Case-insensitive comparison for the operation parameter.
 - **Error Handling**: Improved error handling for folder not found and general exceptions.
 - **Skip Option**: Option to skip individual files during the renaming process.
+- **Filtering Files**: Allow users to specify a filter for the files to be processed based on file extensions or patterns.
+- **Recursive Operation**: Add an option to perform the operation recursively on subdirectories within the specified folder.
+- **Dry Run Mode**: Provide an option for a "dry run" where the script prints what changes would be made without actually renaming the files.
 
 ## Usage
 
