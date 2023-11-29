@@ -18,6 +18,12 @@ Bulk File Renamer is a handy Python script that allows you to rename multiple fi
 - **Prefix**: Add a specified prefix to the beginning of each file name.
 - **Suffix**: Add a specified suffix to the end of each file name.
 - **Change Extension**: Replace the existing file extension with a new one.
+- **Batch Renaming**: Rename multiple files with a common prefix or suffix in one go.
+- **Interactive Mode**: Interactive mode for user confirmation before each renaming operation.
+- **Logging**: Log the details of each renaming operation for future reference.
+- **Case Insensitivity**: Case-insensitive comparison for the operation parameter.
+- **Error Handling**: Improved error handling for folder not found and general exceptions.
+- **Skip Option**: Option to skip individual files during the renaming process.
 
 ## Usage
 
