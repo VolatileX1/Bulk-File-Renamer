@@ -1,15 +1,26 @@
 import os
+import shutil
 
-def bulk_rename(folder_path=None, operation=None, new_value=None):
+def bulk_rename(folder_path=None, operation=None, new_value=None, filter_ext=None, recursive=False, dry_run=False):
     try:
-        # If folder_path is not provided, use the current working directory
         if folder_path is None:
             folder_path = os.getcwd()
 
         # Get the list of files in the folder
-        files = os.listdir(folder_path)
+        files = []
+
+        if recursive:
+            for root, dirs, filenames in os.walk(folder_path):
+                for filename in filenames:
+                    files.append(os.path.join(root, filename))
+        else:
+            files = [f for f in os.listdir(folder_path) if os.path.isfile(os.path.join(folder_path, f))]
 
         for file_name in files:
+            # Filter files based on extension or pattern
+            if filter_ext and not file_name.endswith(filter_ext):
+                continue
+
             # Construct the old and new file paths
             old_path = os.path.join(folder_path, file_name)
 
@@ -27,9 +38,11 @@ def bulk_rename(folder_path=None, operation=None, new_value=None):
 
             # Confirm the renaming operation
             user_input = input(f"Rename {old_path} to {new_path}? (y/n): ").lower()
+
             if user_input == "y":
-                # Rename the file
-                os.rename(old_path, new_path)
+                if not dry_run:
+                    # Rename the file
+                    shutil.move(old_path, new_path)
                 print(f"Renamed: {old_path} to {new_path}")
             else:
                 print(f"Skipped: {old_path}")
@@ -44,4 +57,9 @@ def bulk_rename(folder_path=None, operation=None, new_value=None):
 operation = "suffix"  # Change to "prefix" or "change_extension" as needed
 new_value = "_new"
 
-bulk_rename(operation=operation, new_value=new_value)
+# Additional Features
+filter_ext = ".txt"  # Filter files with a specific extension
+recursive = True  # Perform operation recursively on subdirectories
+dry_run = False  # Set to True for a dry run (no actual file modifications)
+
+bulk_rename(operation=operation, new_value=new_value, filter_ext=filter_ext, recursive=recursive, dry_run=dry_run)
