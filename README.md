@@ -46,7 +46,7 @@ Bulk File Renamer is a handy Python script that allows you to rename multiple fi
 4. Run the script:
 
    ```bash
-   python bulk_rename.py
+   python renamer.py
 
 ## Contributing
 
