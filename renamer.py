@@ -1,7 +1,11 @@
 import os
 
-def bulk_rename(folder_path, operation, new_value):
+def bulk_rename(folder_path=None, operation=None, new_value=None):
     try:
+        # If folder_path is not provided, use the current working directory
+        if folder_path is None:
+            folder_path = os.getcwd()
+
         # Get the list of files in the folder
         files = os.listdir(folder_path)
 
@@ -36,8 +40,8 @@ def bulk_rename(folder_path, operation, new_value):
         print(f"An error occurred: {e}")
 
 # Example usage:
-folder_path = "/path/to/your/folder"
+# If folder_path is not provided, it defaults to the current working directory
 operation = "suffix"  # Change to "prefix" or "change_extension" as needed
 new_value = "_new"
 
-bulk_rename(folder_path, operation, new_value)
+bulk_rename(operation=operation, new_value=new_value)
